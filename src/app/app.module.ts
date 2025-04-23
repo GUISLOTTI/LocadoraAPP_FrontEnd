@@ -8,7 +8,7 @@ import { LocacaoListComponent } from './locacao/locacao-list/locacao-list.compon
 @NgModule({
   declarations: [
     AppComponent,
-    LocacaoListComponent
+    LocacaoListComponent // Declare the component here
   ],
   imports: [
     BrowserModule,
