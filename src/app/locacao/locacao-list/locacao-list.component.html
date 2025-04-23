@@ -1,1 +1,30 @@
-<p>locacao-list works!</p>
+<h2>Locações</h2>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Carro</th>
+      <th>Usuário</th>
+      <th>Data Retirada</th>
+      <th>Data Devolução</th>
+      <th>Valor</th>
+      <th>Observações</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let locacao of locacoes">
+      <td>{{ locacao.codigo }}</td>
+      <td>{{ locacao.identificadorCarro.descricaoCarro }} ({{ locacao.identificadorCarro.ano }})</td>
+      <td>{{ locacao.identificadorUsuario.nome }}</td>
+      <td>{{ locacao.dataRetirada | date:'dd/MM/yyyy HH:mm' }}</td>
+      <td>{{ locacao.dataDevolucao | date:'dd/MM/yyyy HH:mm' }}</td>
+      <td>{{ locacao.valor | currency:'BRL' }}</td>
+      <td>{{ locacao.observacoes || 'Nenhuma' }}</td>
+      <td>
+        <button (click)="deleteLocacao(locacao.codigo)">Excluir</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p *ngIf="locacoes.length === 0">Nenhuma locação encontrada.</p>

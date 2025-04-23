@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LocacaoService, Locacao } from '../locacao.service';
 
 @Component({
@@ -10,7 +11,10 @@ import { LocacaoService, Locacao } from '../locacao.service';
 export class LocacaoListComponent implements OnInit {
   locacoes: Locacao[] = [];
 
-  constructor(private locacaoService: LocacaoService) {}
+  constructor(
+    private locacaoService: LocacaoService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.locacaoService.getLocacoes().subscribe({
@@ -23,6 +27,14 @@ export class LocacaoListComponent implements OnInit {
         alert('Falha ao carregar locações. Verifique o console.');
       }
     });
+  }
+
+  navigateToNew(): void {
+    this.router.navigate(['/locacoes/novo']);
+  }
+
+  editLocacao(id: number): void {
+    this.router.navigate([`/locacoes/editar/${id}`]);
   }
 
   deleteLocacao(id: number): void {
